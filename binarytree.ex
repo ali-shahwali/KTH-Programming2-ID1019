@@ -46,3 +46,41 @@ defmodule Binarytree do
   def getval({:leaf, val}) do val end
   def getval({:node, val, _, _}) do val end
 end
+
+defmodule Bst do
+  #### BINARY SEARCH TREE
+
+  def add(key, elem, :nil) do {:node, key, elem, :nil, :nil} end
+  def add(key, elem, {:node, key, _, left, right}) do {:node, key, elem, left, right} end
+  def add(key, elem, {:node, k, v, left, right}) do
+    cond do
+      key < k -> {:node, k, v, add(key, elem, left), right}
+      true -> {:node, k, v, left, add(key, elem, right)}
+    end
+  end
+
+  #### returns value associated with key, if it doesnt exist returns :no
+  def lookup(key, {:node, key, v, _, _}) do {:ok, v} end
+  def lookup(key, {:node, k, _, left, right}) do
+    cond do
+      key < k -> lookup(key, left)
+      true -> lookup(key, right)
+    end
+  end
+  def lookup(_, _) do :no end
+
+  #### remove key-value pair
+  def remove(key, {:node, key, _, :nil, :nil}) do :nil end
+  def remove(key, {:node, key, _, left, :nil}) do left end
+  def remove(key, {:node, key, _, :nil, right}) do right end
+  def remove(key, {:node, key, _, left, right}) do {:node, getkey(right), getval(right), left, remove(getkey(right), right)} end
+  def remove(key, {:node, k, v, left, right}) do
+    cond do
+      key < k -> {:node, k, v, remove(key, left), right}
+      true -> {:node, k, v, left, remove(key, right)}
+    end
+  end
+
+  def getval({:node, _, v, _, _}) do v end
+  def getkey({:node, key, _, _, _}) do key end
+end
