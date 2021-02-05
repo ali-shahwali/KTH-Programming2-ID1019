@@ -10,8 +10,10 @@ defmodule Binarytree do
   def member(elem, {:node, elem, _, _}) do :yes end
   def member(elem, {:node, value, left, right}) do
     cond do
-      elem < value -> member(elem, left)
-      true -> member(elem, right)
+      elem < value ->
+        member(elem, left)
+      true ->
+        member(elem, right)
     end
   end
 
@@ -19,14 +21,18 @@ defmodule Binarytree do
   def insert(elem, :nil) do {:leaf, elem} end
   def insert(elem, {:leaf, v}) do
     cond do
-      elem < v -> {:node, v, {:leaf, elem}, :nil}
-      true -> {:node, v, :nil, {:leaf, elem}}
+      elem < v ->
+        {:node, v, {:leaf, elem}, :nil}
+      true ->
+        {:node, v, :nil, {:leaf, elem}}
     end
   end
   def insert(elem, {:node, v, left, right}) do
     cond do
-      elem < v -> {:node, v, insert(elem, left), right}
-      true -> {:node, v, left, insert(elem, right)}
+      elem < v ->
+        {:node, v, insert(elem, left), right}
+      true ->
+        {:node, v, left, insert(elem, right)}
     end
   end
 
@@ -37,8 +43,10 @@ defmodule Binarytree do
   def delete(elem, {:node, elem, left, right}) do {:node, getval(right), left, delete(getval(right), right)} end
   def delete(elem, {:node, v, left, right}) do
     cond do
-      elem < v -> {:node, v, delete(elem, left), right}
-      true -> {:node,  v, left, delete(elem, right)}
+      elem < v ->
+        {:node, v, delete(elem, left), right}
+      true ->
+        {:node,  v, left, delete(elem, right)}
     end
   end
 
@@ -54,8 +62,10 @@ defmodule Bst do
   def add(key, elem, {:node, key, _, left, right}) do {:node, key, elem, left, right} end
   def add(key, elem, {:node, k, v, left, right}) do
     cond do
-      key < k -> {:node, k, v, add(key, elem, left), right}
-      true -> {:node, k, v, left, add(key, elem, right)}
+      key < k ->
+        {:node, k, v, add(key, elem, left), right}
+      true ->
+        {:node, k, v, left, add(key, elem, right)}
     end
   end
 
@@ -73,11 +83,15 @@ defmodule Bst do
   def remove(key, {:node, key, _, :nil, :nil}) do :nil end
   def remove(key, {:node, key, _, left, :nil}) do left end
   def remove(key, {:node, key, _, :nil, right}) do right end
-  def remove(key, {:node, key, _, left, right}) do {:node, getkey(right), getval(right), left, remove(getkey(right), right)} end
+  def remove(key, {:node, key, _, left, right}) do
+    {:node, getkey(right), getval(right), left, remove(getkey(right), right)}
+  end
   def remove(key, {:node, k, v, left, right}) do
     cond do
-      key < k -> {:node, k, v, remove(key, left), right}
-      true -> {:node, k, v, left, remove(key, right)}
+      key < k ->
+        {:node, k, v, remove(key, left), right}
+      true ->
+        {:node, k, v, left, remove(key, right)}
     end
   end
 

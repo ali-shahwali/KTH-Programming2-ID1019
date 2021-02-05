@@ -58,8 +58,10 @@ defmodule Introduction do
 
   def duplicate(l) do
     cond do
-      l == [] -> []
-      true -> [hd(l), hd(l)|duplicate(tl(l))]
+      l == [] ->
+        []
+      true ->
+        [hd(l), hd(l)|duplicate(tl(l))]
     end
   end
 
@@ -68,8 +70,10 @@ defmodule Introduction do
   def add(x, l) do
     if x != hd(l) do
       cond do
-        tl(l) == [] -> [x]
-        true -> [hd(l)|add(x, tl(l))]
+        tl(l) == [] ->
+          [x]
+        true ->
+          [hd(l)|add(x, tl(l))]
       end
     else
       IO.puts("already in list")
@@ -79,9 +83,12 @@ defmodule Introduction do
   ## removes all occurences of element x from list
   def remove(x,l) do
     cond do
-      l == [] -> []
-      x == hd(l) -> remove(x,tl(l))
-      true -> [hd(l)|remove(x,tl(l))]
+      l == [] ->
+        []
+      x == hd(l) ->
+        remove(x,tl(l))
+      true ->
+        [hd(l)|remove(x,tl(l))]
     end
   end
 

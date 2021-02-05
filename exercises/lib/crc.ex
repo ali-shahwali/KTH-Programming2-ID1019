@@ -7,9 +7,12 @@ defmodule Crc do
 
   def crc(seq, generator) do
     cond do
-      len(seq) == 3 -> seq
-      hd(seq) == 0 -> crc(tl(seq), generator)
-      true -> crc(four_xor(seq, generator), generator)
+      len(seq) == 3 ->
+        seq
+      hd(seq) == 0 ->
+        crc(tl(seq), generator)
+      true ->
+        crc(four_xor(seq, generator), generator)
     end
   end
 
@@ -23,8 +26,10 @@ defmodule Crc do
   def four_xor(seq, []) do seq end
   def four_xor(seq, [poll|rest]) do
     cond do
-      hd(seq) == poll -> [0|four_xor(tl(seq), rest)]
-      true -> [1|four_xor(tl(seq), rest)]
+      hd(seq) == poll ->
+        [0|four_xor(tl(seq), rest)]
+      true ->
+        [1|four_xor(tl(seq), rest)]
     end
   end
 

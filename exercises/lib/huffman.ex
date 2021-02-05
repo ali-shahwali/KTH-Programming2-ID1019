@@ -22,13 +22,13 @@ defmodule Huffman do
     huffman(freqlist)
   end
 
-  def freq(sample), do: freq(sample, [])
-  def freq([], freq), do: freq
+  def freq(sample) do freq(sample, []) end
+  def freq([], freq) do freq end
   def freq([char | rest], freq) do
     freq(rest, update(char, freq))
   end
 
-  def update(char, []), do: [{char, 1}]
+  def update(char, []) do [{char, 1}] end
   def update(char, [{char, n} | freq]) do
     [{char, n + 1} | freq]
   end
