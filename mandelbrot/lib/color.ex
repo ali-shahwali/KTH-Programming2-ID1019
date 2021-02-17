@@ -12,19 +12,19 @@ defmodule Color do
 
     cond do
       range <= 1 ->
-        {:rgb, 255, 255, 255-prop}
+        {:rgb, 0, 0, prop}
 
       range > 1 and range <= 2 ->
-        {:rgb, 255 - prop, 0, 0}
+        {:rgb, prop, 0, 255}
 
       range > 2 and range <= 3 ->
-        {:rgb, 0, prop, 0}
+        {:rgb, 255, prop, 255}
 
       range > 3 and range <= 4 ->
-        {:rgb, 0, 255, prop}
+        {:rgb, 255-prop, 255, 255-prop}
 
       true ->
-        {:rgb, 255, 255-prop, 255}
+        {:rgb, prop, 255-prop, 0}
     end
   end
 
