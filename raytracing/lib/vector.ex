@@ -10,32 +10,9 @@ defmodule Vector do
 
   def dotprod({x1, x2, x3}, {y1, y2, y3}) do x1*y1 + x2*y2 + x3*y3 end
 
-  def normalise({x1, x2, x3}) do {x1/norm({x1, x2, x3}), x2/norm({x1, x2, x3}), x3/norm({x1, x2, x3})} end
-
-end
-
-defmodule Ray do
-
-  defstruct pos: {0, 0, 0}, dir: {1, 1, 1}
-
-end
-
-defprotocol Body do
-
-  def intersect(object, ray)
-
-end
-
-defimpl Body do
-
-  def intersect(sphere = %Sphere{}, ray = %Ray{}) do
-
+  def normalise({x1, x2, x3}) do
+    n = norm({x1, x2, x3})
+    {x1/n, x2/n, x3/n}
   end
-
-end
-
-defmodule Sphere do
-
-  defstruct pos: {0, 0, 0}, radius: 2
 
 end
