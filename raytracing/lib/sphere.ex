@@ -1,6 +1,6 @@
 defmodule Sphere do
 
-  defstruct(pos: {0, 0, 0}, radius: 2)
+  defstruct pos: {0, 0, 0}, radius: 2, color: {:rgb, 255, 255, 255}
 
   defimpl Object do
     def intersect(sphere, ray) do
@@ -30,6 +30,11 @@ defmodule Sphere do
           end
       end
     end
+
+    def normal(sphere, _, pos) do
+      Vector.normalise(Vector.subtract(pos, sphere.pos))
+    end
+
   end
 
 

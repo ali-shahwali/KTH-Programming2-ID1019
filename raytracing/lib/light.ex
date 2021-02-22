@@ -1,0 +1,3 @@
+defmodule Light do
+
+end

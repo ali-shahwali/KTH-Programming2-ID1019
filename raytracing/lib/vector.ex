@@ -1,5 +1,10 @@
 defmodule Vector do
 
+  @typedoc """
+  Vector operations
+  """
+
+
   def scalar({x1, x2, x3}, s) do {s*x1, s*x2, s*x3} end
 
   def subtract({x1, x2, x3}, {y1, y2, y3}) do {x1 - y1, x2 - y2, x3 - y3} end
