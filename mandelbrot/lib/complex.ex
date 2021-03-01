@@ -3,9 +3,9 @@ defmodule Complex do
     complex number representation
     """
 
-    @type real :: float()
-    @type imag :: float()
-    @type complex :: {:complex, real, imag}
+    @type real() :: float()
+    @type imag() :: float()
+    @type complex() :: {:complex, real, imag}
 
     @doc """
     Returns new complex number
