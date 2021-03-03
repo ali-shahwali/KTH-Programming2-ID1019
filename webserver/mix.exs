@@ -1,9 +1,9 @@
-defmodule Concurrency.MixProject do
+defmodule Webserver.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :concurrency,
+      app: :webserver,
       version: "0.1.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
