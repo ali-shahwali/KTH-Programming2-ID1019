@@ -52,6 +52,9 @@ defmodule Exam do
   def compactor({:leaf, val}, {:leaf, val}) do {:leaf, val} end
   def compactor({:node, left, right}) do {:node, left, right} end
 
+  #7
+
+
   # THE PASCAL QUESTION #
 
   def pascal(n) do
@@ -76,6 +79,55 @@ defmodule Exam do
         [poll1 + poll2| calc_nextrow([poll2|rest])]
       end
   end
+
+  # 2019-06-05
+
+  # 1
+  def drop(list, n) do drop(list, [], n, n) end
+
+  def drop([], acc, _, _) do acc end
+  def drop(list, acc, 1, n) do drop(tl(list), acc, n, n) end
+  def drop(list, acc, k, n) do
+    drop(tl(list), acc ++ [hd(list)], k-1, n)
+  end
+
+  # 2019-03-08
+
+  # 1
+
+  def decode(code) do decode(code, []) end
+  def decode([], acc) do acc end
+  def decode([{char, n}|rest], acc) do
+    acc = add(char, n, acc)
+    decode(rest, acc)
+  end
+
+  def add(_, 0, list) do list end
+  def add(char, n, list) do
+    add(char, n-1, list ++ [char])
+  end
+
+  # 2
+
+  def zip(list1, list2) do zip(list1, list2, []) end
+  def zip([], [], acc) do acc end
+  def zip([e1|rest1], [e2|rest2], acc) do
+    new_elem = {e1, e2}
+    zip(rest1, rest2, acc ++ [new_elem])
+  end
+
+  # 3
+
+  def balance({:node, _,left, right}) do
+    
+  end
+
+  # 4
+
+  def eval({:add, e1, e2}) do eval(e1) + eval(e2) end
+  def eval({:mul, e1, e2}) do eval(e1)*eval(e2) end
+  def eval({:neg, e}) do -e end
+  def eval(e) do e end
 
 
 end

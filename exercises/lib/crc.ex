@@ -1,7 +1,7 @@
 defmodule Crc do
   def test() do
     generator = [1, 0, 1, 1]
-    sequence = [1,1,0,1,0,1,0,1,1,1,0,1,0,0,1,1,0]
+    sequence = [1,0,1,0,0,0,1,1,0]
     crc(sequence ++ [0,0,0], generator)
   end
 
